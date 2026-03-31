@@ -18,7 +18,7 @@ export function Footer() {
           <div className="flex flex-col gap-4">
             <h2 className="text-balance text-lg font-semibold">Portfolio</h2>
             <p className="text-sm text-foreground/60">
-              © {new Date().getFullYear()} Bjorn Melin. All rights reserved.
+              © {new Date().getFullYear()} Damian Rusek. All rights reserved.
             </p>
           </div>
 
@@ -49,7 +49,7 @@ export function Footer() {
             <h2 className="text-balance text-lg font-semibold">Connect</h2>
             <div className="flex gap-4">
               <a
-                href="https://github.com/bjornmelin"
+                href="https://github.com/DamianRusek21"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="rounded-xs text-foreground/60 hover:text-foreground focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
@@ -58,7 +58,7 @@ export function Footer() {
                 <GitHubLogoIcon className="w-5 h-5" aria-hidden="true" />
               </a>
               <a
-                href="https://linkedin.com/in/bjorn-melin"
+                href="https://www.linkedin.com/in/damian-rusek/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="rounded-xs text-foreground/60 hover:text-foreground focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
@@ -67,22 +67,13 @@ export function Footer() {
                 <LinkedInLogoIcon className="w-5 h-5" aria-hidden="true" />
               </a>
               <a
-                href="https://medium.com/@bjornmelin"
+                href="https://medium.com/@rusekd"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="rounded-xs text-foreground/60 hover:text-foreground focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
                 aria-label="Medium"
               >
                 <BookText size={20} aria-hidden="true" />
-              </a>
-              <a
-                href="https://orcid.org/0009-0004-1978-3356"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="rounded-xs text-foreground/60 hover:text-foreground focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
-                aria-label="ORCID"
-              >
-                <BookOpenCheck size={20} aria-hidden="true" />
               </a>
               <Link
                 href="/contact"

@@ -80,7 +80,7 @@ describe("RootLayout", () => {
 describe("RootLayout metadata", () => {
   it("has correct title template", () => {
     expect(metadata.title).toEqual({
-      template: "%s | Bjorn Melin",
+      template: "%s | Damian Rusek",
       default: `${PROFILE.name} - ${PROFILE.shortTitle}`,
     });
   });
@@ -93,7 +93,7 @@ describe("RootLayout metadata", () => {
     expect(metadata.openGraph).toBeDefined();
     const og = metadata.openGraph as Record<string, unknown>;
     expect(og.type).toBe("website");
-    expect(og.title).toContain("Bjorn Melin");
+    expect(og.title).toContain("Damian Rusek");
   });
 
   it("has twitter card configuration", () => {
@@ -111,8 +111,8 @@ describe("RootLayout metadata", () => {
   });
 
   it("has author information", () => {
-    expect(metadata.authors).toEqual([{ name: "Bjorn Melin" }]);
-    expect(metadata.creator).toBe("Bjorn Melin");
+    expect(metadata.authors).toEqual([{ name: "Damian Rusek" }]);
+    expect(metadata.creator).toBe("Damian Rusek");
   });
 });
 

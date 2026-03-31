@@ -18,18 +18,15 @@ export interface Education {
 }
 
 export const education: Education = {
-  degree: "Bachelor of Science - BS, Mathematics and Computer Science",
-  school: "Augsburg University",
-  location: "Minneapolis, Minnesota, United States",
-  startDate: "September 2016",
-  endDate: "May 2020",
-  gpa: "3.94",
+  degree: "Bachelor of Science - BS, Computer Science (Data Science focus)",
+  school: "Kean University",
+  location: "Union, New Jersey, United States",
+  startDate: "September 2023",
+  endDate: "Present",
+  gpa: "3.7/4.0",
   honors: [
-    { name: "2x NASA Space Grant Recipient" },
-    { name: "Elected to Pi Mu Epsilon" },
-    { name: "Departmental honors" },
-    { name: "Summa Cum Laude" },
-    { name: "National Honors in Mathematics" },
+    { name: "Phi Kappa Phi Honor Society" },
+    { name: "Dean's List: Spring - Fall 2025" },
   ],
   activities: [
     { name: "President of Mathematics Chapter" },

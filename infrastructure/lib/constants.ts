@@ -58,7 +58,7 @@ export const CONFIG = {
   tags: {
     Project: "Portfolio",
     ManagedBy: "CDK",
-    Owner: "Bjorn Melin",
+    Owner: "Damian Rusek",
   },
 } as const;
 

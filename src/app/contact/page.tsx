@@ -5,7 +5,7 @@ import { PROFILE } from "@/lib/profile";
 
 export const metadata: Metadata = {
   title: `Contact | ${PROFILE.name}`,
-  description: "Get in touch with me through this contact form.",
+  description: "Get in touch regarding internships, opportunities, or collaborations.",
 };
 
 /**
@@ -19,8 +19,8 @@ export default function ContactPage() {
         <div className="space-y-2">
           <h1 className="text-balance text-3xl font-bold tracking-tighter">Contact Me</h1>
           <p className="text-muted-foreground">
-            Have a question or want to get in touch? Fill out the form below and I&apos;ll get back
-            to you as soon as possible.
+            Interested in working together or have an opportunity? Send me a message and I’ll get
+            back to you shortly.
           </p>
         </div>
         <ContactForm />
@@ -28,4 +28,4 @@ export default function ContactPage() {
       <Toaster />
     </div>
   );
-}
+} 

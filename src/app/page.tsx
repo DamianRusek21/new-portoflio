@@ -17,7 +17,7 @@ export const metadata: Metadata = {
         url: "/screenshots/hero-preview.png",
         width: 1200,
         height: 630,
-        alt: "Bjorn Melin - Portfolio Hero Section",
+        alt: "Damian Rusek - Portfolio Hero Section",
       },
     ],
   },

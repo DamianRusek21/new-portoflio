@@ -61,7 +61,7 @@ export function Navbar() {
             href="/"
             className="rounded-xs text-xl font-bold focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
           >
-            Bjorn Melin | Portfolio
+            Damian Rusek | Portfolio
           </Link>
 
           {/* Desktop Navigation */}

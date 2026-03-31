@@ -5,12 +5,12 @@ test("navbar routes between core pages", async ({ page }) => {
 
   const primaryNav = page
     .getByRole("navigation")
-    .filter({ has: page.getByRole("link", { name: /Bjorn Melin/i }) })
+    .filter({ has: page.getByRole("link", { name: /Damian Rusek/i }) })
     .first();
 
   await primaryNav.getByRole("link", { name: "About" }).click();
   await expect(page).toHaveURL(/\/about\/?$/);
-  await expect(page.getByRole("heading", { level: 1 })).toContainText("Bjorn Melin");
+  await expect(page.getByRole("heading", { level: 1 })).toContainText("Damian Rusek");
 
   await primaryNav.getByRole("link", { name: "Projects" }).click();
   await expect(page).toHaveURL(/\/projects\/?$/);

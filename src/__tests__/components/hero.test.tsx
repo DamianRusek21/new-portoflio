@@ -7,7 +7,7 @@ describe("Hero", () => {
   it("renders the name heading", () => {
     render(<Hero />);
 
-    expect(screen.getByRole("heading", { level: 1, name: /bjorn melin/i })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { level: 1, name: /Damian Rusek/i })).toBeInTheDocument();
   });
 
   it("renders the professional title", () => {
@@ -21,7 +21,7 @@ describe("Hero", () => {
   it("renders the profile image with correct alt text", () => {
     render(<Hero />);
 
-    const image = screen.getByRole("img", { name: /bjorn melin/i });
+    const image = screen.getByRole("img", { name: /Damian Rusek/i });
     expect(image).toBeInTheDocument();
     expect(image).toHaveAttribute("src", "/headshot/headshot-2024.jpg");
   });

@@ -23,4 +23,5 @@ export type ProjectCardModel = {
   featured: boolean;
 
   highlights?: string[];
+  metrics?: string[];
 };

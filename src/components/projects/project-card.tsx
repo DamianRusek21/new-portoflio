@@ -1,8 +1,6 @@
 import BookOpenText from "lucide-react/dist/esm/icons/book-open-text";
 import ExternalLink from "lucide-react/dist/esm/icons/external-link";
-import GitFork from "lucide-react/dist/esm/icons/git-fork";
 import Github from "lucide-react/dist/esm/icons/github";
-import Star from "lucide-react/dist/esm/icons/star";
 import Link from "next/link";
 import { ExpandableText } from "@/components/shared/expandable-text";
 import { TechBadge } from "@/components/shared/tech-badge";
@@ -20,9 +18,6 @@ interface ProjectCardProps {
 
 /**
  * Card component showing a project summary.
- *
- * @param props Component properties.
- * @returns Project card element.
  */
 export function ProjectCard({ project, className }: ProjectCardProps) {
   const maxVisibleTags = 4;
@@ -34,37 +29,29 @@ export function ProjectCard({ project, className }: ProjectCardProps) {
     <Card
       data-testid="project-card"
       className={cn(
-        "group relative overflow-hidden",
-        "flex flex-col",
-        "transition-colors motion-reduce:transition-none",
-        "hover:border-border/80 hover:bg-card/90",
+        "group relative overflow-hidden flex flex-col",
+        "transition-colors hover:border-border/80 hover:bg-card/90",
         className,
       )}
     >
       <CardHeader className="relative">
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-transparent"
-        />
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-transparent" />
+
         <div className="relative flex flex-wrap items-center gap-2">
           <Badge variant="secondary">{project.category}</Badge>
-          {project.language ? <Badge variant="outline">{project.language}</Badge> : null}
-          {project.featured ? <Badge>Featured</Badge> : null}
+          {project.language && <Badge variant="outline">{project.language}</Badge>}
+          {project.featured && <Badge>Featured</Badge>}
         </div>
 
-        <CardTitle className="relative mt-3 text-balance text-lg">
+        <CardTitle className="relative mt-3 text-lg">
           <Link
             href={project.primaryUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className={cn(
-              "inline-flex items-center gap-2 rounded-xs",
-              "focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",
-              "hover:underline underline-offset-4 motion-reduce:transition-none",
-            )}
+            className="inline-flex items-center gap-2 hover:underline"
           >
-            <span className="break-words">{project.title}</span>
-            <ExternalLink className="h-4 w-4 text-muted-foreground" aria-hidden="true" />
+            <span>{project.title}</span>
+            <ExternalLink className="h-4 w-4 text-muted-foreground" />
           </Link>
         </CardTitle>
 
@@ -74,108 +61,100 @@ export function ProjectCard({ project, className }: ProjectCardProps) {
       </CardHeader>
 
       <CardContent className="space-y-4">
-        {/* Highlights first */}
-        {project.highlights?.length ? (
+        {/* 🔥 METRICS (NEW MAIN FEATURE) */}
+        {project.metrics?.length && (
+          <div className="flex flex-wrap gap-2">
+            {project.metrics.map((metric) => (
+              <span
+                key={metric}
+                className="inline-flex items-center rounded-full bg-primary/10 px-2.5 py-1 text-xs font-medium text-primary"
+              >
+                {metric}
+              </span>
+            ))}
+          </div>
+        )}
+
+        {/* Highlights */}
+        {project.highlights?.length && (
           <ul className="space-y-1 text-sm text-foreground/90">
             {project.highlights.slice(0, 2).map((highlight) => (
               <li key={highlight} className="flex gap-2">
-                <span
-                  aria-hidden="true"
-                  className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-primary/70"
-                />
-                <span className="min-w-0">{highlight}</span>
+                <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-primary/70" />
+                <span>{highlight}</span>
               </li>
             ))}
           </ul>
-        ) : null}
+        )}
 
-        {/* Tags middle */}
+        {/* Tags */}
         <div className="flex items-center gap-2 overflow-hidden">
-          <div className="flex min-w-0 items-center gap-2 overflow-hidden">
+          <div className="flex gap-2 overflow-hidden">
             {visibleTags.map((tag) => (
               <TechBadge key={tag} name={tag} size="sm" />
             ))}
           </div>
-          {hiddenCount > 0 ? (
+
+          {hiddenCount > 0 && (
             <Popover>
               <PopoverTrigger asChild>
-                <button
-                  type="button"
-                  className="inline-flex h-11 items-center rounded-full border border-border/60 bg-muted/70 px-3 text-[11px] font-medium text-foreground/80 transition-colors hover:bg-muted/80 focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background md:h-8 md:px-2 md:py-0.5"
-                  aria-label={`Show ${hiddenCount} more tags`}
-                  title="Show all tags"
-                >
+                <button className="px-2 text-xs border rounded-full">
                   +{hiddenCount}
                 </button>
               </PopoverTrigger>
-              <PopoverContent className="w-72 p-3" side="top" align="start">
-                <div className="space-y-3">
-                  <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
-                    Tags
-                  </p>
-                  <div className="max-h-44 overflow-auto pr-1">
-                    <div className="flex flex-wrap gap-2">
-                      {project.tags.map((tag) => (
-                        <TechBadge key={tag} name={tag} size="sm" />
-                      ))}
-                    </div>
-                  </div>
+
+              <PopoverContent className="w-72 p-3">
+                <div className="flex flex-wrap gap-2">
+                  {project.tags.map((tag) => (
+                    <TechBadge key={tag} name={tag} size="sm" />
+                  ))}
                 </div>
               </PopoverContent>
             </Popover>
-          ) : null}
+          )}
         </div>
 
-        {/* Metadata last (smaller) */}
-        <div className="flex flex-wrap items-center gap-x-3 gap-y-1.5 text-xs text-muted-foreground">
-          <span className="inline-flex items-center gap-1 tabular-nums">
-            <Star className="h-3.5 w-3.5" aria-hidden="true" />
-            {project.stars.toLocaleString("en-US")}
-          </span>
-          <span className="inline-flex items-center gap-1 tabular-nums">
-            <GitFork className="h-3.5 w-3.5" aria-hidden="true" />
-            {project.forks.toLocaleString("en-US")}
-          </span>
-          <span className="tabular-nums">Updated {project.updatedLabel}</span>
-        </div>
+        {/* Fallback metadata (only if no metrics) */}
+        {!project.metrics && (
+          <div className="text-xs text-muted-foreground">
+            Updated {project.updatedLabel}
+          </div>
+        )}
       </CardContent>
 
-      <CardFooter className="mt-auto flex flex-wrap items-center justify-between gap-2">
-        <div className="flex items-center gap-2">
-          <Button variant="outline" size="icon" className="h-11 w-11" asChild>
-            <Link
-              href={project.repoUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label={`Open ${project.title} repository on GitHub`}
-            >
-              <Github className="h-4 w-4" aria-hidden="true" />
+      <CardFooter className="mt-auto flex justify-between">
+        <div className="flex gap-2">
+          <Button variant="outline" size="icon" asChild>
+            <Link href={project.repoUrl} target="_blank">
+              <Github className="h-4 w-4" />
             </Link>
           </Button>
-          <Button variant="outline" className="h-11 md:h-9" asChild>
-            <Link href={project.primaryUrl} target="_blank" rel="noopener noreferrer">
-              <ExternalLink className="h-4 w-4" aria-hidden="true" />
-              <span>Open</span>
+
+          <Button variant="outline" asChild>
+            <Link href={project.primaryUrl} target="_blank">
+              <ExternalLink className="h-4 w-4" />
+              Open
             </Link>
           </Button>
         </div>
 
-        <div className="flex items-center gap-2">
-          {project.liveUrl ? (
-            <Button variant="secondary" className="h-11 md:h-9" asChild>
-              <Link href={project.liveUrl} target="_blank" rel="noopener noreferrer">
+        <div className="flex gap-2">
+          {project.liveUrl && (
+            <Button variant="secondary" asChild>
+              <Link href={project.liveUrl} target="_blank">
                 Live
               </Link>
             </Button>
-          ) : null}
-          {project.docsUrl ? (
-            <Button variant="outline" className="h-11 md:h-9" asChild>
-              <Link href={project.docsUrl} target="_blank" rel="noopener noreferrer">
-                <BookOpenText className="h-4 w-4" aria-hidden="true" />
+          )}
+
+          {project.docsUrl && (
+            <Button variant="outline" asChild>
+              <Link href={project.docsUrl} target="_blank">
+                <BookOpenText className="h-4 w-4" />
                 Docs
               </Link>
             </Button>
-          ) : null}
+          )}
         </div>
       </CardFooter>
     </Card>

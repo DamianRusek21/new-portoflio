@@ -14,7 +14,7 @@ export function Hero() {
             <div className="relative w-48 h-48 md:w-64 md:h-64 rounded-full overflow-hidden border-4 border-primary/10">
               <Image
                 src="/headshot/headshot-2024.jpg"
-                alt="Bjorn Melin"
+                alt="Damian Rusek"
                 fill
                 sizes="(max-width: 768px) 192px, 256px"
                 priority
@@ -25,7 +25,7 @@ export function Hero() {
 
           <div className="flex flex-col items-center">
             <h1 className="text-balance text-4xl font-bold tracking-tight md:text-6xl lg:text-7xl">
-              Hi, I&apos;m Bjorn Melin
+              Hi, I&apos;m Damian Rusek
             </h1>
             <p className="mt-6 text-lg md:text-xl lg:text-2xl text-muted-foreground max-w-3xl">
               {PROFILE.heroTagline}

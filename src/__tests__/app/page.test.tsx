@@ -5,7 +5,7 @@ import { describe, expect, it, vi } from "vitest";
 vi.mock("@/components/sections/hero", () => ({
   Hero: () => (
     <section data-testid="hero-section">
-      <h1>Hi, I&apos;m Bjorn Melin</h1>
+      <h1>Hi, I&apos;m Damian Rusek</h1>
     </section>
   ),
 }));
@@ -64,7 +64,7 @@ describe("Home page", () => {
 
     // H1 should be in Hero
     const h1 = screen.getByRole("heading", { level: 1 });
-    expect(h1).toHaveTextContent("Bjorn Melin");
+    expect(h1).toHaveTextContent("Damian Rusek");
 
     // H2s should be in About and FeaturedProjects
     const h2s = screen.getAllByRole("heading", { level: 2 });

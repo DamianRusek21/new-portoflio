@@ -32,7 +32,7 @@ describe("ContactPage", () => {
 
 describe("ContactPage metadata", () => {
   it("exports metadata with correct title", () => {
-    expect(metadata.title).toBe("Contact | Bjorn Melin");
+    expect(metadata.title).toBe("Contact | Damian Rusek");
   });
 
   it("exports metadata with description", () => {

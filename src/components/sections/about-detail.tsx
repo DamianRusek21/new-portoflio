@@ -1,3 +1,6 @@
+import BarChart3 from "lucide-react/dist/esm/icons/bar-chart-3";
+import Database from "lucide-react/dist/esm/icons/database";
+import LineChart from "lucide-react/dist/esm/icons/line-chart";
 import Award from "lucide-react/dist/esm/icons/award";
 import Brain from "lucide-react/dist/esm/icons/brain";
 import Building2 from "lucide-react/dist/esm/icons/building-2";
@@ -27,7 +30,7 @@ export function AboutDetail() {
             <div className="relative w-48 h-48 rounded-full overflow-hidden border-4 border-primary/10">
               <Image
                 src="/headshot/headshot-2024.jpg"
-                alt="Bjorn Melin"
+                alt="Damian Rusek"
                 fill
                 sizes="192px"
                 priority
@@ -35,25 +38,25 @@ export function AboutDetail() {
               />
             </div>
             <div>
-              <h1 className="text-balance text-4xl font-bold md:text-5xl mb-4">Bjorn Melin</h1>
+              <h1 className="text-balance text-4xl font-bold md:text-5xl mb-4">Damian Rusek</h1>
               <p className="text-xl text-muted-foreground mb-4">
-                Senior Data Scientist & AI Engineer
+                Aspiring Data Analyst | Data Science Student
               </p>
               <div className="flex flex-wrap gap-2">
                 <Badge variant="outline" className="bg-primary/10">
-                  <Cloud className="w-3 h-3 mr-2" aria-hidden="true" /> AWS Certified
+                  <Code className="w-3 h-3 mr-2" aria-hidden="true" /> Python
                 </Badge>
                 <Badge variant="outline" className="bg-primary/10">
-                  <Brain className="w-3 h-3 mr-2" aria-hidden="true" /> AI/ML Expert
+                  <Database className="w-3 h-3 mr-2" aria-hidden="true" /> SQL
                 </Badge>
                 <Badge variant="outline" className="bg-primary/10">
-                  <Building2 className="w-3 h-3 mr-2" aria-hidden="true" /> Cloud Architect
+                  <BarChart3 className="w-3 h-3 mr-2" aria-hidden="true" /> Tableau
                 </Badge>
                 <Badge variant="outline" className="bg-primary/10">
-                  <Code className="w-3 h-3 mr-2" aria-hidden="true" /> Full-Stack Developer
+                  <Brain className="w-3 h-3 mr-2" aria-hidden="true" /> Machine Learning
                 </Badge>
                 <Badge variant="outline" className="bg-primary/10">
-                  <Sparkles className="w-3 h-3 mr-2" aria-hidden="true" /> Generative AI Evangelist
+                  <LineChart className="w-3 h-3 mr-2" aria-hidden="true" /> Data Analysis
                 </Badge>
               </div>
             </div>
@@ -68,29 +71,18 @@ export function AboutDetail() {
             </h2>
             <div className="space-y-4 text-lg text-muted-foreground leading-relaxed">
               <p>
-                AI Engineer and Machine Learning Engineer based in Salt Lake City, specializing in
-                deep learning, generative AI, and LLM applications. With a proven track record of
-                delivering multi-million-dollar solutions, I bring expertise in building scalable,
-                cost-effective systems on AWS and transforming operations through efficient,
-                reliable, and strategically designed solutions.
+                Data-focused Computer Science student at Kean University with a strong foundation in analytics, machine
+                learning, and data visualization. I build end-to-end data projects using Python, SQL, Tableau, and Excel,
+                turning raw datasets into clear, actionable insights.
               </p>
               <p>
-                My recent achievements include leading a high-profile neuro-symbolic AI project that
-                reduced training data needs by 40% and solved complex material science challenges. I
-                successfully migrated 3M&apos;s Corporate Research Analytical Lab&apos;s
-                infrastructure to AWS, cutting cloud costs by 60% and establishing scalable
-                frameworks for manufacturing and divisional teams. I&apos;ve developed custom Python
-                packages, reusable IaC libraries, and modernized CI/CD pipelines, consistently
-                delivering 50%+ improvements in performance and deployment efficiency.
+                My work includes developing predictive models, performing exploratory data analysis, and creating
+                dashboards to support data-driven decision-making. I’ve worked with real-world datasets, applying
+                feature engineering, statistical analysis, and machine learning to uncover meaningful patterns and trends.
               </p>
               <p>
-                With multiple AWS certifications and a strong foundation in Mathematics and Computer
-                Science from Augsburg University, I&apos;ve evolved from software engineering to
-                become a leader in cloud architecture and data science. I&apos;m passionate about
-                advancing AI technologies and developing solutions that enable operational
-                excellence and innovation. Outside of tech, I&apos;m an avid freestyle skier and
-                outdoor enthusiast, bringing the same dedication to precision and continuous
-                improvement from the slopes to my professional work.
+                I’m currently seeking data analyst or data science internship opportunities where I can apply my skills,
+                 continue learning, and contribute to solving real business problems.
               </p>
             </div>
           </Card>
@@ -193,7 +185,7 @@ export function AboutDetail() {
         <div className="mb-20">
           <h2 className="text-balance text-3xl font-bold mb-8 flex items-center gap-2">
             <Award className="w-8 h-8 text-primary" aria-hidden="true" />
-            AWS Certifications
+            Certifications
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {certifications.map((cert) => (
@@ -287,14 +279,6 @@ export function AboutDetail() {
                       {honor.name}
                     </Badge>
                   ))}
-                </div>
-                <div className="mt-4">
-                  <p className="text-sm font-medium mb-2">Activities and Societies:</p>
-                  <ul className="list-disc list-inside text-sm text-muted-foreground space-y-1 ml-2">
-                    {education.activities.map((activity) => (
-                      <li key={activity.name}>{activity.name}</li>
-                    ))}
-                  </ul>
                 </div>
               </div>
             </div>

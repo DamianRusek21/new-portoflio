@@ -51,7 +51,7 @@ describe("generateMetadata", () => {
       image: "/banner.png",
     });
 
-    expect(metadata.title).toBe("About | Bjorn Melin");
+    expect(metadata.title).toBe("About | Damian Rusek");
     expect(metadata.description).toBe("About page");
     expect(metadata.metadataBase?.toString()).toBe("https://example.com/");
     expect(metadata.alternates?.canonical).toBe("https://example.com/about");

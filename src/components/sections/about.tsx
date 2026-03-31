@@ -31,7 +31,7 @@ export function About() {
             id="about-heading"
             className="scroll-mt-24 text-balance text-4xl font-bold md:text-5xl mb-6"
           >
-            Crafting AI Solutions & <span className="text-primary">Cloud Architecture</span>
+            Analyzing data to solve real-world problems
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">{PROFILE.aboutLead}</p>
         </div>

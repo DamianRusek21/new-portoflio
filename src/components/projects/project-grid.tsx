@@ -40,23 +40,24 @@ interface ProjectGridProps {
  * @returns Filterable/sortable projects grid.
  */
 export function ProjectGrid({ projects, categories, languages, className }: ProjectGridProps) {
-  const [{ q, category, lang, minStars, sort }, setQuery] = useQueryStates(projectsQueryParsers);
+  const [{ q, category, lang, sort }, setQuery] = useQueryStates(projectsQueryParsers);
   const normalizedLang = lang.toLowerCase();
 
-  const filtered = filterProjects(projects, { q, category, lang: normalizedLang, minStars });
+  const filtered = filterProjects(projects, {
+    q,
+    category,
+    lang: normalizedLang,
+    minStars: 0,
+  });
   const sorted = sortProjects(filtered, sort);
 
   const isDirty =
-    q !== "" ||
-    category !== "all" ||
-    normalizedLang !== "all" ||
-    minStars !== 0 ||
-    sort !== "stars";
+    q !== "" || category !== "all" || normalizedLang !== "all" || sort !== "relevance";
 
   return (
     <div className={cn("space-y-8", className)}>
       <div className="space-y-4">
-        <div className="grid grid-cols-1 gap-3 md:grid-cols-12 md:items-end">
+        <div className="grid grid-cols-1 gap-3 md:grid-cols-11 md:items-end">
           <div className="md:col-span-5">
             <label htmlFor="projects-search" className="sr-only">
               Search projects
@@ -142,33 +143,6 @@ export function ProjectGrid({ projects, categories, languages, className }: Proj
             </Select>
           </div>
 
-          <div className="md:col-span-1">
-            <label htmlFor="projects-stars" className="sr-only">
-              Minimum stars
-            </label>
-            <Select
-              value={String(minStars)}
-              onValueChange={(value) => {
-                setQuery({ minStars: Number(value) });
-              }}
-            >
-              <SelectTrigger
-                id="projects-stars"
-                aria-label="Filter by minimum stars"
-                className="h-11 md:h-9"
-              >
-                <SelectValue placeholder="Stars" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="0">Any</SelectItem>
-                <SelectItem value="10">10+</SelectItem>
-                <SelectItem value="25">25+</SelectItem>
-                <SelectItem value="50">50+</SelectItem>
-                <SelectItem value="100">100+</SelectItem>
-              </SelectContent>
-            </Select>
-          </div>
-
           <div className="md:col-span-2">
             <label htmlFor="projects-sort" className="sr-only">
               Sort
@@ -183,7 +157,7 @@ export function ProjectGrid({ projects, categories, languages, className }: Proj
                 <SelectValue placeholder="Sort" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="stars">Stars</SelectItem>
+                <SelectItem value="relevance">Most Relevant</SelectItem>
                 <SelectItem value="updated">Recently Updated</SelectItem>
                 <SelectItem value="name">Name</SelectItem>
               </SelectContent>
@@ -201,7 +175,14 @@ export function ProjectGrid({ projects, categories, languages, className }: Proj
             {isDirty ? (
               <Button
                 variant="outline"
-                onClick={() => setQuery(null)}
+                onClick={() =>
+                  setQuery({
+                    q: "",
+                    category: "all",
+                    lang: "all",
+                    sort: "relevance",
+                  })
+                }
                 aria-label="Clear Filters"
                 className="h-11 md:h-9"
               >
@@ -216,18 +197,28 @@ export function ProjectGrid({ projects, categories, languages, className }: Proj
       </div>
 
       {sorted.length === 0 ? (
-        <div className="text-center py-12">
+        <div className="py-12 text-center">
           <p className="text-muted-foreground">No projects match the current filters.</p>
           {isDirty ? (
             <div className="mt-4">
-              <Button variant="outline" onClick={() => setQuery(null)}>
+              <Button
+                variant="outline"
+                onClick={() =>
+                  setQuery({
+                    q: "",
+                    category: "all",
+                    lang: "all",
+                    sort: "relevance",
+                  })
+                }
+              >
                 Clear Filters
               </Button>
             </div>
           ) : null}
         </div>
       ) : (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
           {sorted.map((project) => (
             <ProjectCard key={project.id} project={project} />
           ))}

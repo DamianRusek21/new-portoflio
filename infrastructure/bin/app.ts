@@ -10,24 +10,21 @@ import { StorageStack } from "../lib/stacks/storage-stack";
 
 const app = new cdk.App();
 
-// Environment configuration
-const env = {
-  account: process.env.CDK_DEFAULT_ACCOUNT,
-  region: process.env.CDK_DEFAULT_REGION || "us-east-1",
+const env: cdk.Environment = {
+  account: process.env.CDK_DEFAULT_ACCOUNT ?? "",
+  region: process.env.CDK_DEFAULT_REGION ?? "us-east-1",
 };
 
-// DNS Stack (must be in us-east-1 for CloudFront)
 const dnsStack = new DnsStack(app, getStackName("dns", "prod"), {
   env: {
     ...env,
-    region: "us-east-1", // Force us-east-1 for CloudFront certificate
+    region: "us-east-1",
   },
   domainName: CONFIG.prod.domainName,
   environment: CONFIG.prod.environment,
   tags: CONFIG.tags,
 });
 
-// Storage Stack
 const storageStack = new StorageStack(app, getStackName("storage", "prod"), {
   env,
   domainName: CONFIG.prod.domainName,
@@ -37,10 +34,8 @@ const storageStack = new StorageStack(app, getStackName("storage", "prod"), {
   tags: CONFIG.tags,
 });
 
-// Ensure storage stack depends on DNS stack
 storageStack.addDependency(dnsStack);
 
-// Deployment Stack
 const deploymentStack = new DeploymentStack(app, getStackName("deployment", "prod"), {
   env,
   domainName: CONFIG.prod.domainName,
@@ -50,25 +45,19 @@ const deploymentStack = new DeploymentStack(app, getStackName("deployment", "pro
   tags: CONFIG.tags,
 });
 
-// Ensure deployment stack depends on storage stack
 deploymentStack.addDependency(storageStack);
 
-// Email Stack (created before Monitoring to provide Lambda function reference)
 const emailStack = new EmailStack(app, getStackName("email", "prod"), {
   env,
   domainName: CONFIG.prod.domainName,
   environment: CONFIG.prod.environment,
   hostedZone: dnsStack.hostedZone,
   allowedOrigins: CONFIG.prod.email.allowedOrigins,
-  // SSM parameter paths for recipient email and Resend API key
-  // Defaults: /portfolio/prod/CONTACT_EMAIL and /portfolio/prod/resend/api-key
   tags: CONFIG.tags,
 });
 
-// Ensure email stack depends on DNS stack
 emailStack.addDependency(dnsStack);
 
-// Monitoring Stack
 const monitoringStack = new MonitoringStack(app, getStackName("monitoring", "prod"), {
   env,
   domainName: CONFIG.prod.domainName,
@@ -81,6 +70,7 @@ const monitoringStack = new MonitoringStack(app, getStackName("monitoring", "pro
   tags: CONFIG.tags,
 });
 
-// Ensure monitoring stack depends on storage and email stacks
 monitoringStack.addDependency(storageStack);
 monitoringStack.addDependency(emailStack);
+
+app.synth();

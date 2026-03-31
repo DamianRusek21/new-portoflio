@@ -43,7 +43,7 @@ export const metadata: Metadata = {
         url: "/screenshots/hero-preview.png",
         width: 1200,
         height: 630,
-        alt: "Bjorn Melin - Portfolio Hero Section",
+        alt: "Damian Rusek - Portfolio Hero Section",
       },
     ],
   },
@@ -54,8 +54,8 @@ export const metadata: Metadata = {
     images: ["/screenshots/hero-preview.png"],
   },
   keywords: PROFILE.keywords,
-  authors: [{ name: "Bjorn Melin" }],
-  creator: "Bjorn Melin",
+  authors: [{ name: "Damian Rusek" }],
+  creator: "Damian Rusek",
 };
 
 /**

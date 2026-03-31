@@ -1,13 +1,5 @@
 "use client";
 
-/**
- * Contact form component with client-side validation and POST to
- * `${NEXT_PUBLIC_API_URL}/contact`.
- *
- * Includes honeypot and timing-based abuse prevention and provides accessible
- * success/error feedback via alerts and toasts.
- */
-
 import { zodResolver } from "@hookform/resolvers/zod";
 import AlertCircle from "lucide-react/dist/esm/icons/alert-circle";
 import CheckCircle2 from "lucide-react/dist/esm/icons/check-circle-2";
@@ -20,17 +12,10 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
-import { buildContactEndpoint, safeParseUrl } from "@/lib/api/contact";
 import { type ContactFormData, contactFormSchema } from "@/lib/schemas/contact";
 
-interface APIErrorResponse {
-  error: string;
-  code?: string;
-  details?: Array<{ message: string; path: Array<string | number> }>;
-}
-
 /**
- * Contact form UI with validation and submission logic.
+ * Contact form UI with validation and mailto submission.
  *
  * @returns A fully accessible contact form.
  */
@@ -38,6 +23,7 @@ export function ContactForm() {
   const [formStatus, setFormStatus] = useState<"idle" | "success" | "error">("idle");
   const { toast } = useToast();
   const idPrefix = useId();
+
   const fieldIds = useMemo(
     () => ({
       name: `${idPrefix}-name`,
@@ -47,7 +33,7 @@ export function ContactForm() {
     }),
     [idPrefix],
   );
-  // Track when form was loaded for timing-based abuse prevention
+
   const formLoadTime = useRef(Date.now());
   const [honeypot, setHoneypot] = useState("");
 
@@ -55,7 +41,6 @@ export function ContactForm() {
     register,
     handleSubmit,
     reset,
-    setError,
     formState: { errors, isSubmitting },
   } = useForm<ContactFormData>({
     resolver: zodResolver(contactFormSchema),
@@ -67,108 +52,40 @@ export function ContactForm() {
     setFormStatus("idle");
 
     try {
-      const allowLocalContact = process.env.NEXT_PUBLIC_ALLOW_LOCAL_CONTACT === "true";
-      const runtimeApiUrl = (
-        globalThis as typeof globalThis & {
-          __CONTACT_API_URL__?: string;
-        }
-      ).__CONTACT_API_URL__;
-      let apiBaseUrl = process.env.NEXT_PUBLIC_API_URL || runtimeApiUrl;
-
-      if (!apiBaseUrl) {
-        if (allowLocalContact) {
-          // Must include /api prefix to avoid hitting the Next.js /contact page (HTML)
-          apiBaseUrl = `${window.location.origin}/api`;
-        } else {
-          throw new Error(
-            "Contact form is not configured. Set NEXT_PUBLIC_API_URL in your environment (see .env.example).",
-          );
-        }
+      // Basic spam checks
+      if (honeypot.trim() !== "") {
+        throw new Error("Spam detected.");
       }
 
-      // Final safeguard: if the URL points to the same origin without an /api prefix,
-      // it will likely hit our own HTML page instead of an API.
-      const url = safeParseUrl(apiBaseUrl);
-      if (
-        url &&
-        url.origin === window.location.origin &&
-        (!url.pathname.startsWith("/api") || !allowLocalContact)
-      ) {
-        throw new Error(
-          "Contact API is not available on the same origin unless explicitly allowed via NEXT_PUBLIC_ALLOW_LOCAL_CONTACT. Set NEXT_PUBLIC_API_URL to a deployed API.",
-        );
+      const timeElapsed = Date.now() - formLoadTime.current;
+      if (timeElapsed < 1500) {
+        throw new Error("Form submitted too quickly.");
       }
 
-      let endpoint: string;
-      try {
-        endpoint = buildContactEndpoint(apiBaseUrl);
-      } catch {
-        throw new Error(
-          "Invalid NEXT_PUBLIC_API_URL. Expected a full URL like https://api.your-domain.com.",
-        );
-      }
+      const subject = encodeURIComponent(`Portfolio inquiry from ${data.name}`);
+      const body = encodeURIComponent(
+        `Name: ${data.name}\nEmail: ${data.email}\n\nMessage:\n${data.message}`,
+      );
 
-      const response = await fetch(endpoint, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          ...data,
-          honeypot,
-          formLoadTime: formLoadTime.current,
-        }),
-      });
+      const mailtoLink = `mailto:drusek20@gmail.com?subject=${subject}&body=${body}`;
 
-      // Explicitly check if we got HTML instead of JSON (common when hitting the wrong route)
-      const contentType = response.headers.get("content-type");
-      if (contentType?.includes("text/html")) {
-        throw new Error(
-          "The API returned HTML instead of JSON. You might be hitting the contact page instead of an API route.",
-        );
-      }
-
-      let result: APIErrorResponse | null = null;
-      try {
-        result = (await response.json()) as APIErrorResponse;
-      } catch {
-        throw new Error("Failed to send message. The API returned invalid JSON.");
-      }
-
-      if (!response.ok) {
-        // Map API validation errors onto form fields.
-        if (response.status === 400 && result?.details) {
-          const validFields: ReadonlySet<keyof ContactFormData> = new Set([
-            "name",
-            "email",
-            "message",
-          ]);
-          result.details.forEach(({ message, path }) => {
-            const field = path[0] as keyof ContactFormData;
-            if (typeof field === "string" && validFields.has(field)) {
-              setError(field, { message });
-            } else {
-              // eslint-disable-next-line no-console
-              console.warn("contact-form: unexpected field error", field);
-            }
-          });
-          throw new Error("Please check the form for errors");
-        }
-
-        throw new Error(result?.error || "Failed to send message");
-      }
+      window.location.href = mailtoLink;
 
       setFormStatus("success");
       toast({
-        title: "Message sent!",
-        description: "Thanks for your message. I'll get back to you soon.",
+        title: "Email draft opened",
+        description: "Your email app should open with the message pre-filled.",
       });
+
       reset();
+      setHoneypot("");
+      formLoadTime.current = Date.now();
     } catch (error) {
       setFormStatus("error");
       toast({
         title: "Error",
-        description: error instanceof Error ? error.message : "Failed to send message",
+        description:
+          error instanceof Error ? error.message : "Failed to open your email app.",
         variant: "destructive",
       });
     }
@@ -186,9 +103,9 @@ export function ContactForm() {
             className="h-4 w-4 text-emerald-600 dark:text-emerald-300"
             aria-hidden="true"
           />
-          <AlertTitle>Message Sent Successfully!</AlertTitle>
+          <AlertTitle>Email draft opened</AlertTitle>
           <AlertDescription className="text-emerald-800/90 dark:text-emerald-200/90">
-            Thank you for your message. I&apos;ll get back to you as soon as possible.
+            Your email app should now be open with your message ready to send to me.
           </AlertDescription>
         </Alert>
       )}
@@ -196,12 +113,18 @@ export function ContactForm() {
       {formStatus === "error" && (
         <Alert variant="destructive">
           <AlertCircle className="h-4 w-4" aria-hidden="true" />
-          <AlertTitle>Failed to Send Message</AlertTitle>
+          <AlertTitle>Couldn&apos;t open email app</AlertTitle>
           <AlertDescription>
-            Please try again. If the problem persists, reach out via the contact form later or send
-            a message through{" "}
+            Please try again. If the issue continues, email me directly at{" "}
             <a
-              href="https://www.linkedin.com/in/bjornmelin/"
+              href="mailto:drusek20@gmail.com"
+              className="rounded-xs underline hover:text-red-400 focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+            >
+              drusek20@gmail.com
+            </a>{" "}
+            or message me on{" "}
+            <a
+              href="https://www.linkedin.com/in/damian-rusek-3a04482a6/"
               target="_blank"
               rel="noopener noreferrer"
               className="rounded-xs underline hover:text-red-400 focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
@@ -219,8 +142,7 @@ export function ContactForm() {
         noValidate
         aria-busy={isSubmitting}
       >
-        {/* Honeypot field - hidden from users, catches bots */}
-        <div className="absolute -left-[9999px] opacity-0 pointer-events-none" aria-hidden="true">
+        <div className="pointer-events-none absolute -left-[9999px] opacity-0" aria-hidden="true">
           <label htmlFor={fieldIds.honeypot}>
             Leave this field empty
             <input
@@ -240,7 +162,7 @@ export function ContactForm() {
           <Input
             id={fieldIds.name}
             type="text"
-            placeholder="Your name…"
+            placeholder="Your name"
             {...register("name")}
             autoComplete="name"
             aria-describedby={errors.name ? `${fieldIds.name}-error` : undefined}
@@ -260,7 +182,7 @@ export function ContactForm() {
           <Input
             id={fieldIds.email}
             type="email"
-            placeholder="your.email@example.com…"
+            placeholder="your.email@example.com"
             {...register("email")}
             autoComplete="email"
             inputMode="email"
@@ -281,7 +203,7 @@ export function ContactForm() {
           <Label htmlFor={fieldIds.message}>Message</Label>
           <Textarea
             id={fieldIds.message}
-            placeholder="Your message…"
+            placeholder="Your message"
             {...register("message")}
             autoComplete="off"
             aria-describedby={errors.message ? `${fieldIds.message}-error` : undefined}
@@ -301,7 +223,7 @@ export function ContactForm() {
           {isSubmitting ? (
             <>
               <Loader2 className="mr-2 h-4 w-4 animate-spin" aria-hidden="true" />
-              Sending…
+              Opening…
             </>
           ) : (
             "Send Message"

@@ -102,7 +102,7 @@ describe("AboutDetail", () => {
   it("renders profile section with name", () => {
     render(<AboutDetail />);
 
-    expect(screen.getByRole("heading", { level: 1, name: /bjorn melin/i })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { level: 1, name: /damian rusek/i })).toBeInTheDocument();
   });
 
   it("renders professional title", () => {
@@ -118,7 +118,7 @@ describe("AboutDetail", () => {
   it("renders profile image", () => {
     render(<AboutDetail />);
 
-    const image = screen.getByRole("img", { name: /bjorn melin/i });
+    const image = screen.getByRole("img", { name: /damian rusek/i });
     expect(image).toBeInTheDocument();
   });
 

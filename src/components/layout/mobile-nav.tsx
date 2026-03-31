@@ -96,7 +96,7 @@ export function MobileNav({
       >
         <SheetHeader className="border-b border-border pb-4">
           <SheetTitle>Navigation</SheetTitle>
-          <SheetDescription>Explore Bjorn's portfolio.</SheetDescription>
+          <SheetDescription>Explore Damian's portfolio.</SheetDescription>
         </SheetHeader>
         <div className="mt-4 text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground">
           Main

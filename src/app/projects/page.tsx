@@ -4,7 +4,7 @@ import { projectCategories, projectLanguages, projectsData } from "@/data/projec
 
 /** Metadata for the projects listing page. */
 export const metadata: Metadata = {
-  title: "Projects - Bjorn Melin",
+  title: "Projects - Damian Rusek",
   description:
     "Explore my portfolio of projects in machine learning and AI, cloud architecture, and web development.",
 };
@@ -20,8 +20,8 @@ export default function ProjectsPage() {
       <div className="mx-auto max-w-4xl space-y-6">
         <h1 className="text-balance font-heading text-4xl font-bold md:text-6xl">Projects</h1>
         <p className="text-balance text-xl text-muted-foreground">
-          A collection of projects showcasing work in machine learning and AI, cloud architecture,
-          and web development, along with open source contributions.
+A collection of projects showcasing data analytics, machine learning,
+and dashboarding, focused on turning real-world data into actionable business insights.
         </p>
       </div>
       <div className="mt-16 mx-auto max-w-6xl">

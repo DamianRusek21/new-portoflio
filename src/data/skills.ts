@@ -1,4 +1,6 @@
 import Brain from "lucide-react/dist/esm/icons/brain";
+import Wrench from "lucide-react/dist/esm/icons/wrench";
+import BarChart3 from "lucide-react/dist/esm/icons/bar-chart-3";
 import Cloud from "lucide-react/dist/esm/icons/cloud";
 import Code from "lucide-react/dist/esm/icons/code";
 import Terminal from "lucide-react/dist/esm/icons/terminal";
@@ -13,32 +15,30 @@ export interface SkillCategory {
 
 export const skillCategories: SkillCategory[] = [
   {
-    name: "AI & Machine Learning",
+    name: "Machine Learning",
     Icon: Brain,
     color: "bg-purple-500/10 text-purple-500",
     skills: [
-      "Neural Networks",
-      "Reinforcement Learning",
-      "Deep Learning",
-      "Generative AI",
-      "Neuro-symbolic AI",
-      "Causal Inference",
-      "LLM Fine-Tuning",
+      "Logistic Regression",
+      "Random Forest",
+      "Classification Models",
+      "Feature Engineering",
+      "Model Evaluation",
+      "Scikit-learn",
     ],
   },
   {
-    name: "Cloud Architecture & MLOps",
-    Icon: Cloud,
+    name: "Tools & Technologies",
+    Icon: Wrench,
     color: "bg-blue-500/10 text-blue-500",
     skills: [
-      "AWS SageMaker",
-      "Docker/Kubernetes",
-      "CloudFormation",
-      "Vector DBs",
-      "GPU Acceleration",
-      "CI/CD",
+      "Git & GitHub",
       "Docker",
-      "Git",
+      "NGINX",
+      "Kubernetes",
+      "CI/CD",
+      "MySQL",
+      "PostgreSQL",
     ],
   },
   {
@@ -47,29 +47,24 @@ export const skillCategories: SkillCategory[] = [
     color: "bg-green-500/10 text-green-500",
     skills: [
       "Python",
+      "SQL",
       "Java",
-      "TypeScript",
-      "TensorFlow",
-      "PyTorch",
-      "LangChain",
-      "Hugging Face Transformers",
-      "Scikit-Learn",
-      "CUDA",
+      "R",
       "Pandas",
       "NumPy",
     ],
   },
   {
-    name: "Data Science",
-    Icon: Terminal,
+    name: "Data Analytics",
+    Icon: BarChart3,
     color: "bg-orange-500/10 text-orange-500",
     skills: [
-      "Feature Engineering",
-      "Dimensionality Reduction",
-      "Clustering",
-      "Statistical Modeling",
-      "Databricks",
-      "Plotly Dash",
+      "Data Cleaning",
+      "Exploratory Data Analysis",
+      "Data Visualization",
+      "Dashboarding",
+      "Statistical Analysis",
+      "ETL Pipelines",
     ],
   },
 ];

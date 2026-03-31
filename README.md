@@ -10,7 +10,7 @@ and AWS CDK infrastructure. Deployed to S3 with CloudFront CDN. Requires Node.js
 [![React](https://img.shields.io/badge/React-19.2.3-blue?logo=react)](https://react.dev)
 [![Next.js](https://img.shields.io/badge/Next.js-16.1.3-black?logo=next.js)](https://nextjs.org/)
 [![GitHub](https://img.shields.io/badge/GitHub-BjornMelin-181717?logo=github)](https://github.com/BjornMelin)
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-Bjorn%20Melin-0077B5?logo=linkedin)](https://www.linkedin.com/in/bjorn-melin)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Bjorn%20Melin-0077B5?logo=linkedin)](https://https://www.linkedin.com/in/damian-rusek-3a04482a6/)
 [![Medium](https://img.shields.io/badge/Medium-000000?logo=medium&logoColor=white)](https://medium.com/@bjornmelin)
 
 ## Table of Contents
@@ -354,7 +354,7 @@ See [infrastructure/README.md#tests](infrastructure/README.md#tests) for command
 
 ## Author
 
-### Bjorn Melin
+### Damian Rusek
 
 [![AWS Certified Solutions Architect](https://images.credly.com/size/110x110/images/0e284c3f-5164-4b21-8660-0d84737941bc/image.png)](https://www.credly.com/org/amazon-web-services/badge/aws-certified-solutions-architect-associate)
 [![AWS Certified Developer](https://images.credly.com/size/110x110/images/b9feab85-1a43-4f6c-99a5-631b88d5461b/image.png)](https://www.credly.com/org/amazon-web-services/badge/aws-certified-developer-associate)
@@ -367,7 +367,7 @@ AWS-certified Solutions Architect, Developer, SysOps Administrator, and Machine
 Learning Engineer. Connect on:
 
 - [GitHub](https://github.com/BjornMelin)
-- [LinkedIn](https://www.linkedin.com/in/bjorn-melin)
+- [LinkedIn](https://https://www.linkedin.com/in/damian-rusek-3a04482a6/)
 - [Coursera](https://www.coursera.org/learner/bjorn-melin)
 - [Medium](https://medium.com/@bjornmelin)
 
@@ -404,4 +404,4 @@ If you use this project in your research or work:
 
 ---
 
-Built with React 19 + Next.js 16 by [Bjorn Melin](https://bjornmelin.io).
+Built with React 19 + Next.js 16 by [Damian Rusek](https://bjornmelin.io).

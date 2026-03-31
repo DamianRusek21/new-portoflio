@@ -1,7 +1,7 @@
 import { type ParserMap, parseAsInteger, parseAsString, parseAsStringEnum } from "nuqs/server";
 
 /** Supported sort keys for projects list ordering. */
-export const projectsSortValues = ["stars", "updated", "name"] as const;
+export const projectsSortValues = ["relevance", "updated", "name"] as const;
 /** Union type for supported projects sort values. */
 export type ProjectsSort = (typeof projectsSortValues)[number];
 
@@ -12,7 +12,7 @@ export const projectsQueryParsers = {
   lang: parseAsString.withDefault("all").withOptions({ scroll: false }),
   minStars: parseAsInteger.withDefault(0).withOptions({ scroll: false }),
   sort: parseAsStringEnum([...projectsSortValues] as ProjectsSort[])
-    .withDefault("stars")
+    .withDefault("relevance")
     .withOptions({ scroll: false }),
 } satisfies ParserMap;
 

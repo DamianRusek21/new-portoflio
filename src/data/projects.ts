@@ -67,6 +67,18 @@ const generatedProjects = parsed.projects
       id: project.id,
       title: project.name,
       description: summary,
+
+      metrics:
+        project.id === "bank-churn-prediction-customer-insights"
+          ? ["10,000+ records", "82% accuracy", "Customer segmentation insights"]
+          : project.id === "fighting-fit-mma-fight-outcomes-prediction"
+            ? ["6,500+ fights", "0.71 F1-score", "15+ engineered features"]
+            : project.id === "nyc-airbnb-pricing-demand-analysis"
+              ? ["48,000+ listings", "SQL analysis", "Revenue optimization insights"]
+              : project.id === "ecommerce-analytics-revenue-optimization-dashboard"
+                ? ["Revenue trends", "Customer segmentation", "KPI dashboarding"]
+                : undefined,
+
       repoUrl,
       primaryUrl,
       liveUrl: override?.liveUrl,

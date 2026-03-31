@@ -124,7 +124,7 @@ describe("ProjectsPage", () => {
 
 describe("ProjectsPage metadata", () => {
   it("exports metadata with correct title", () => {
-    expect(metadata.title).toBe("Projects - Bjorn Melin");
+    expect(metadata.title).toBe("Projects - Damian Rusek");
   });
 
   it("exports metadata with description", () => {

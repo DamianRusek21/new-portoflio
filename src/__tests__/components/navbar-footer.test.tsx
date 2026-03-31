@@ -33,6 +33,6 @@ describe("Navbar/Footer", () => {
 
   it("renders Footer with copyright text", () => {
     render(<Footer />);
-    expect(screen.getByText(/bjorn melin/i)).toBeInTheDocument();
+    expect(screen.getByText(/Damian Rusek/i)).toBeInTheDocument();
   });
 });

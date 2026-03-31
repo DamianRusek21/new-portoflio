@@ -104,6 +104,8 @@ export function filterProjects(projects: ProjectCardModel[], filters: ProjectFil
         project.language ?? "",
         project.topics.join(" "),
         project.tags.join(" "),
+        project.metrics?.join(" ") ?? "",
+        project.highlights?.join(" ") ?? "",
       ].join(" "),
     );
 
@@ -115,15 +117,22 @@ export function filterProjects(projects: ProjectCardModel[], filters: ProjectFil
  * Sorts projects by the specified criterion.
  *
  * @param projects - Array of projects to sort.
- * @param sort - Sort criterion: "stars", "updated", or "name".
+ * @param sort - Sort criterion: "relevance", "updated", or "name".
  * @returns New sorted array (does not mutate original).
  */
 export function sortProjects(projects: ProjectCardModel[], sort: ProjectsSort): ProjectCardModel[] {
   const sorted = [...projects];
+
   sorted.sort((a, b) => {
-    if (sort === "stars") {
-      const delta = b.stars - a.stars;
+    if (sort === "relevance") {
+      if (a.featured && !b.featured) return -1;
+      if (!a.featured && b.featured) return 1;
+
+      const aTime = Date.parse(a.updatedAt) || 0;
+      const bTime = Date.parse(b.updatedAt) || 0;
+      const delta = bTime - aTime;
       if (delta !== 0) return delta;
+
       return a.title.localeCompare(b.title, undefined, { sensitivity: "base" });
     }
 
@@ -132,10 +141,12 @@ export function sortProjects(projects: ProjectCardModel[], sort: ProjectsSort): 
       const bTime = Date.parse(b.updatedAt) || 0;
       const delta = bTime - aTime;
       if (delta !== 0) return delta;
-      return b.stars - a.stars;
+
+      return a.title.localeCompare(b.title, undefined, { sensitivity: "base" });
     }
 
     return a.title.localeCompare(b.title, undefined, { sensitivity: "base" });
   });
+
   return sorted;
 }

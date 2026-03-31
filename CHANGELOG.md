@@ -213,7 +213,7 @@ All notable changes to this project are documented in this file.
 * **deploy:** Added GHA Workflow to deploy infrastructure and UI ([9d25bcc](https://github.com/BjornMelin/bjornmelin-platform-io/commit/9d25bcc7d046ecedd4293afcf666b469f2543ef6))
 * **deploy:** Revamp deployment workflows for frontend and infrastructure ([e5aa030](https://github.com/BjornMelin/bjornmelin-platform-io/commit/e5aa03055976a4528d794fd6326c447d10a37f16))
 * **deps:** Upgrade TRPC packages and adjust TypeScript configuration ([3e02036](https://github.com/BjornMelin/bjornmelin-platform-io/commit/3e02036afd4c9ed4adcb2f1641e485400b793226))
-* **docs:** Add README.md for Bjorn Melin's portfolio website ([4dd61f0](https://github.com/BjornMelin/bjornmelin-platform-io/commit/4dd61f06169c43770ca4db5f7583743239177399))
+* **docs:** Add README.md for Damian Rusek's portfolio website ([4dd61f0](https://github.com/BjornMelin/bjornmelin-platform-io/commit/4dd61f06169c43770ca4db5f7583743239177399))
 * **education:** Update academic details and leadership roles ([87a76f3](https://github.com/BjornMelin/bjornmelin-platform-io/commit/87a76f3548c9726285c7cee13302bccbdd7433ba))
 * **email:** Implement Email Service and Error Boundary components ([102a9f9](https://github.com/BjornMelin/bjornmelin-platform-io/commit/102a9f988aafc144c87fa290dc4ea20d954f2375))
 * **experience:** Comprehensively update professional experience details ([b4f0a25](https://github.com/BjornMelin/bjornmelin-platform-io/commit/b4f0a25631baf50cfd8d01dbed2ac3c82c1f62e4))
