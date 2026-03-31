@@ -1,0 +1,156 @@
+{
+  "metadata": {
+    "description": "Portfolio project reference for Damian Rusek",
+    "generated": "2026-03-30",
+    "totalRepositories": 4,
+    "author": "Damian Rusek",
+    "updateFrequency": "As-needed",
+    "source": "Personal Portfolio Projects"
+  },
+  "projects": [
+    {
+      "id": "bank-churn-prediction-customer-insights",
+      "name": "Bank Churn Prediction & Customer Insights",
+      "url": "https://github.com/DamianRusek21/bank-churn-project",
+      "stars": 0,
+      "forks": 0,
+      "watchers": 0,
+      "license": "MIT",
+      "language": "Python",
+      "created": "2025-01-01",
+      "updated": "2026-03-30",
+      "description": "Customer churn prediction and analytics project using Python, scikit-learn, and Tableau.",
+      "summary": "Built a churn prediction project on 10,000+ customer records using Python and scikit-learn. Performed exploratory analysis to identify churn drivers and created Tableau dashboards to highlight KPIs and high-risk customer segments.",
+      "keyFeatures": [
+        "Logistic Regression model with 82% accuracy",
+        "Exploratory data analysis on customer churn drivers",
+        "KPI dashboarding in Tableau",
+        "Segment analysis for high-risk customer groups"
+      ],
+      "techStack": {
+        "languages": ["Python"],
+        "frameworks": ["Pandas", "scikit-learn"],
+        "visualization": ["Tableau"],
+        "analysis": ["EDA", "Feature Engineering", "Classification"]
+      },
+      "status": "Completed",
+      "topics": [
+        "data-analysis",
+        "machine-learning",
+        "python",
+        "tableau",
+        "customer-churn",
+        "logistic-regression",
+        "scikit-learn"
+      ]
+    },
+    {
+      "id": "fighting-fit-mma-fight-outcomes-prediction",
+      "name": "Fighting Fit – MMA Fight Outcomes Prediction",
+      "url": "https://github.com/DamianRusek21/FightingFit",
+      "stars": 0,
+      "forks": 0,
+      "watchers": 0,
+      "license": "MIT",
+      "language": "Python",
+      "created": "2025-01-01",
+      "updated": "2026-03-30",
+      "description": "Machine learning project analyzing MMA fight outcomes using Python, MySQL, and Tableau.",
+      "summary": "Developed an end-to-end analytics project to predict MMA fight outcomes using 6,500+ fight records. Built a Random Forest model, engineered 15+ features, and created Tableau dashboards to analyze fighter trends and win probability patterns.",
+      "keyFeatures": [
+        "Random Forest model with 64% accuracy and 0.71 F1-score",
+        "15+ engineered features including age, reach, and betting odds differentials",
+        "MySQL database for structured storage and querying",
+        "Tableau dashboards for fighter comparisons and win trends"
+      ],
+      "techStack": {
+        "languages": ["Python", "SQL"],
+        "database": ["MySQL"],
+        "frameworks": ["Pandas", "scikit-learn"],
+        "visualization": ["Tableau"]
+      },
+      "status": "Completed",
+      "topics": [
+        "machine-learning",
+        "python",
+        "mysql",
+        "tableau",
+        "random-forest",
+        "sports-analytics",
+        "feature-engineering"
+      ]
+    },
+    {
+      "id": "nyc-airbnb-pricing-demand-analysis",
+      "name": "NYC Airbnb Pricing & Demand Analysis",
+      "url": "https://github.com/DamianRusek21/nyc-airbnb-analysis",
+      "stars": 0,
+      "forks": 0,
+      "watchers": 0,
+      "license": "MIT",
+      "language": "SQL",
+      "created": "2025-01-01",
+      "updated": "2026-03-30",
+      "description": "Analytics project exploring Airbnb pricing and demand patterns across New York City.",
+      "summary": "Analyzed 48,000+ Airbnb listings using SQL, Excel, and Tableau to identify pricing and occupancy trends across neighborhoods and property types. Built views and dashboards to support revenue optimization insights.",
+      "keyFeatures": [
+        "Analyzed 48,000+ NYC Airbnb listings",
+        "Built SQL views for pricing and occupancy analysis",
+        "Identified strong occupancy trends in mid-priced listings",
+        "Created Tableau dashboards for business insights"
+      ],
+      "techStack": {
+        "languages": ["SQL"],
+        "database": ["PostgreSQL"],
+        "tools": ["Excel"],
+        "visualization": ["Tableau"]
+      },
+      "status": "Completed",
+      "topics": [
+        "data-analysis",
+        "sql",
+        "postgresql",
+        "tableau",
+        "excel",
+        "airbnb",
+        "pricing-analysis"
+      ]
+    },
+    {
+      "id": "ecommerce-analytics-revenue-optimization-dashboard",
+      "name": "End-to-End E-Commerce Analytics Dashboard",
+      "url": "https://github.com/DamianRusek21/ecommerce-analytics-dashboard",
+      "stars": 0,
+      "forks": 0,
+      "watchers": 0,
+      "license": "MIT",
+      "language": "Python",
+      "created": "2026-03-01",
+      "updated": "2026-03-30",
+      "description": "End-to-end e-commerce analytics project focused on revenue trends, customer behavior, and dashboard reporting.",
+      "summary": "Built an analytics project to evaluate e-commerce revenue performance using SQL, Python, and dashboarding tools. Focused on trend analysis, customer behavior, KPI reporting, and business recommendations for revenue optimization.",
+      "keyFeatures": [
+        "Revenue trend analysis",
+        "Customer segmentation and behavior analysis",
+        "KPI reporting for business performance",
+        "Interactive dashboard for decision support"
+      ],
+      "techStack": {
+        "languages": ["Python", "SQL"],
+        "frameworks": ["Pandas"],
+        "visualization": ["Tableau"],
+        "analysis": ["EDA", "KPI Analysis", "Dashboarding"]
+      },
+      "status": "In Progress",
+      "topics": [
+        "data-analysis",
+        "python",
+        "sql",
+        "tableau",
+        "ecommerce",
+        "dashboard",
+        "revenue-optimization"
+      ]
+    }
+  ]
+}
