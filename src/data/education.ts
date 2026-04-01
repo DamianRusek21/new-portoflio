@@ -27,6 +27,7 @@ export const education: Education = {
   honors: [
     { name: "Phi Kappa Phi Honor Society" },
     { name: "Dean's List: Spring - Fall 2025" },
+    { name: "Upsilon Pi Epsilon (UPE) - International Honor Society for Computing"},
   ],
   activities: [
     { name: "President of Mathematics Chapter" },
